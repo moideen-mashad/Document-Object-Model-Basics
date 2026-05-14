@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <main class="container">
         <header>
             <h1>The DOM Tree Explained</h1>
             <p class="subtitle">A visual and interactive guide to understanding the Document Object Model in JavaScript.</p>
@@ -23,35 +23,43 @@
             <h2><span>2.</span> The Folder Analogy</h2>
             <p>Think of the DOM tree exactly like the <strong>folder and file structure</strong> on your computer.</p>
             
-            <div class="folder-grid">
-                <div class="folder-card">
-                    <div class="folder-icon">🗄️</div>
-                    <div class="folder-title">&lt;html&gt; Element</div>
-                    <p class="folder-desc">Your root folder (e.g., C:\ drive).</p>
-                </div>
-                <div class="folder-card">
-                    <div class="folder-icon">📁</div>
-                    <div class="folder-title">&lt;body&gt; Element</div>
-                    <p class="folder-desc">A main system folder inside your root.</p>
-                </div>
-                <div class="folder-card">
-                    <div class="folder-icon">📂</div>
-                    <div class="folder-title">&lt;div&gt; &amp; &lt;ul&gt;</div>
-                    <p class="folder-desc">Sub-folders inside the body.</p>
-                </div>
-                <div class="folder-card">
-                    <div class="folder-icon">📄</div>
-                    <div class="folder-title">Text &amp; Attributes</div>
-                    <p class="folder-desc">Files sitting inside those sub-folders.</p>
-                </div>
-            </div>
+            <article class="folder-grid">
+                <figure class="folder-card">
+                    <span class="folder-icon" aria-hidden="true">🗄️</span>
+                    <figcaption>
+                        <h3 class="folder-title">&lt;html&gt; Element</h3>
+                        <p class="folder-desc">Your root folder (e.g., C:\ drive).</p>
+                    </figcaption>
+                </figure>
+                <figure class="folder-card">
+                    <span class="folder-icon" aria-hidden="true">📁</span>
+                    <figcaption>
+                        <h3 class="folder-title">&lt;body&gt; Element</h3>
+                        <p class="folder-desc">A main system folder inside your root.</p>
+                    </figcaption>
+                </figure>
+                <figure class="folder-card">
+                    <span class="folder-icon" aria-hidden="true">📂</span>
+                    <figcaption>
+                        <h3 class="folder-title">Semantic Tags &amp; Lists</h3>
+                        <p class="folder-desc">Sub-folders inside the body.</p>
+                    </figcaption>
+                </figure>
+                <figure class="folder-card">
+                    <span class="folder-icon" aria-hidden="true">📄</span>
+                    <figcaption>
+                        <h3 class="folder-title">Text &amp; Attributes</h3>
+                        <p class="folder-desc">Files sitting inside those sub-folders.</p>
+                    </figcaption>
+                </figure>
+            </article>
         </section>
 
         <section>
             <h2><span>3.</span> JavaScript Code Interaction</h2>
             <p>Because the DOM is structured as a tree, we can use JavaScript to "climb" it, find specific elements, and manipulate them.</p>
             
-            <div class="code-block">
+            <pre><code class="code-block">
 // Finding a specific element
 const itemList = document.getElementById('item-list');
 
@@ -61,25 +69,25 @@ newItem.textContent = 'Item 3 (Added via JS)';
 
 // Adding it to the DOM
 itemList.appendChild(newItem);
-            </div>
+            </code></pre>
 
-            <div class="playground">
+            <article class="playground">
                 <h3>Live DOM Manipulation Playground</h3>
                 <p>Click the buttons below to run JavaScript that interacts with the DOM tree area below.</p>
                 
-                <div class="controls">
+                <menu class="controls">
                     <button id="add-btn">Add New Node</button>
-                    <button id="highlight-btn">Highlight Parent</button>
+                    <button id="highlight-btn">Highlight Nodes</button>
                     <button id="clear-btn">Reset Tree</button>
-                </div>
+                </menu>
 
-                <div class="demo-area" id="demo-area">
-                    <div class="demo-item">Original Node 1</div>
-                    <div class="demo-item">Original Node 2</div>
-                </div>
-            </div>
+                <output class="demo-area" id="demo-area">
+                    <p class="demo-item">Original Node 1</p>
+                    <p class="demo-item">Original Node 2</p>
+                </output>
+            </article>
         </section>
-    </div>
+    </main>
 
     <script src="index.js"></script>
 </body>

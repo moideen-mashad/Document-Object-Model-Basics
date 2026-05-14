@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
     addBtn.addEventListener('click', () => {
         nodeCount++;
         
-        // Step 1: Create a new <div> element (like creating a new file)
-        const newNode = document.createElement('div');
+        // Step 1: Create a new <p> element (avoiding divitis!)
+        const newNode = document.createElement('p');
         
         // Step 2: Add properties to it
         newNode.className = 'demo-item';

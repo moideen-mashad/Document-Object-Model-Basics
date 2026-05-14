@@ -4,19 +4,31 @@ The **Document Object Model (DOM)** is a programming interface for web documents
 
 A web page is a document. This document can be either displayed in the browser window or as the HTML source. It is the same document in both cases.
 
+## 🚫 Brand Guideline: Avoiding "Divitis"
+A core philosophy of this project is to keep the DOM tree **simple and minimal** by avoiding the overuse of `<div>` tags (a common bad practice known as "divitis"). 
+
+Instead of wrapping everything in a generic `<div>`, we use **Semantic HTML5 Elements** whenever possible to give meaning to the structure of the DOM tree:
+- `<main>` instead of `<div id="main">`
+- `<section>` and `<article>` for grouped content
+- `<header>` and `<footer>` for page layout
+- `<figure>` and `<figcaption>` for visual components
+- `<menu>` or `<nav>` for controls and links
+
+This keeps the DOM tree shallow, readable, and highly accessible!
+
 ## 📁 The Folder Analogy
 Think of the DOM tree like the **folder structure** on your computer.
 
 - **The `<html>` element** is like your main root folder (e.g., `C:\` drive or `Macintosh HD`).
 - **The `<head>` and `<body>` elements** are two main folders inside that root directory.
-- **Other tags (like `<div>`, `<h1>`, `<p>`)** are sub-folders or files nested inside those directories.
+- **Other semantic tags (like `<article>`, `<section>`, `<p>`)** are sub-folders or files nested inside those directories.
 - **Attributes and text** are like the properties or the content inside a specific file.
 
 Just like you can open folders, look inside them, move files around, or create new files, JavaScript allows you to do the exact same things with HTML elements!
 
 ## 💻 HTML Code to Diagram Mapping
 
-Let's look at the simple code we have in `index.html`:
+Let's look at the simple semantic code we have in `index.html`:
 
 ```html
 <!DOCTYPE html>
@@ -25,21 +37,26 @@ Let's look at the simple code we have in `index.html`:
     <title>DOM Tree Explained</title>
 </head>
 <body>
-    <div id="main-container">
-        <h1>Welcome to the DOM</h1>
-        <p class="description">This is a paragraph inside a div.</p>
-        <ul id="item-list">
-            <li>Item 1</li>
-            <li>Item 2</li>
-        </ul>
-    </div>
+    <main class="container">
+        <header>
+            <h1>The DOM Tree Explained</h1>
+        </header>
+        <section>
+            <h2>What is the DOM?</h2>
+            <p>This is a paragraph inside a section.</p>
+            <ul id="item-list">
+                <li>Item 1</li>
+                <li>Item 2</li>
+            </ul>
+        </section>
+    </main>
 </body>
 </html>
 ```
 
 ### 🌳 The Visual Diagram (Mermaid)
 
-When the browser reads the HTML above, it creates a tree-like structure that looks like this:
+When the browser reads the HTML above, it creates a clean, semantic tree-like structure:
 
 ```mermaid
 graph TD
@@ -50,15 +67,21 @@ graph TD
     Head --> Title[title]
     Title --> TitleText["DOM Tree Explained (Text Node)"]
     
-    Body --> Div[div #main-container]
+    Body --> Main[main .container]
     
-    Div --> H1[h1]
-    H1 --> H1Text["Welcome to the DOM (Text Node)"]
+    Main --> Header[header]
+    Header --> H1[h1]
+    H1 --> H1Text["The DOM Tree Explained (Text Node)"]
     
-    Div --> P[p .description]
-    P --> PText["This is a paragraph inside a div. (Text Node)"]
+    Main --> Section[section]
     
-    Div --> Ul[ul #item-list]
+    Section --> H2[h2]
+    H2 --> H2Text["What is the DOM? (Text Node)"]
+    
+    Section --> P[p]
+    P --> PText["This is a paragraph inside a section. (Text Node)"]
+    
+    Section --> Ul[ul #item-list]
     
     Ul --> Li1[li]
     Li1 --> Li1Text["Item 1 (Text Node)"]
@@ -77,7 +100,7 @@ Here's the code you can see in `index.js`, demonstrating this concept:
 // 1. SELECTING ELEMENTS (Finding Folders/Files)
 
 // Finding a specific, uniquely named folder
-const mainContainer = document.getElementById('main-container');
+const mainContainer = document.querySelector('.container');
 
 // 2. TRAVERSING THE DOM (Navigating up and down folders)
 
@@ -91,7 +114,7 @@ const parentList = firstListItem.parentElement; // Gets the <ul>
 
 // 3. MANIPULATING THE DOM (Creating/Editing/Deleting files)
 
-// Creating a new file and adding it
+// Creating a new file and adding it (Using semantic tags, avoiding divs!)
 const newItem = document.createElement('li');
 newItem.textContent = 'Item 3 (Added via JS)';
 itemList.appendChild(newItem); // Saving it into the folder
